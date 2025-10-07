@@ -36,9 +36,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3 
-  forth-step:
-    runs-on: ubuntu-latest
-    needs: [first-step,checkout ]
-    steps:    
+           
       - name: print readme file
         run: cat README.md
