@@ -29,8 +29,13 @@ jobs:
     steps:    
       - name: print working directory
         run: pwd
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3 
   forth-step:
     runs-on: ubuntu-latest
     steps:    
       - name: print readme file
-        run: cat readme.md
+        run: cat README.md
