@@ -18,4 +18,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:    
       - name: Run a one-line script
-        run: echo Hello, world $ {{ inputs.enviroment }}!
+        run: echo Hello, world "${{ inputs.enviroment }}"!
+  sec-step:
+    runs-on: ubuntu-latest
+    steps:    
+      - name: list files
+        run: ls -l
+  third-step:
+    runs-on: ubuntu-latest
+    steps:    
+      - name: print working directory
+        run: pwd
+  forth-step:
+    runs-on: ubuntu-latest
+    steps:    
+      - name: print readme file
+        run: cat readme.md
