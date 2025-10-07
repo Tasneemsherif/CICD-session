@@ -2,6 +2,16 @@ name: first test CI
 
 on:
   workflow_dispatch:
+    inputs:
+      enviroment :
+        description: 'Choose an enviroment'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - staging
+          - production
 
 jobs:
   first-step:
