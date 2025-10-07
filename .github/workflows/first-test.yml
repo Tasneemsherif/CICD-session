@@ -15,12 +15,17 @@ on:
           - staging
           - production
 
+env: 
+  GLOBAL_VAR: "This is a global variable"
+
 jobs:
   first-step:
     runs-on: ubuntu-latest
-    steps:    
+    steps: 
       - name: Run a one-line script
         run: echo Hello, world "${{ inputs.enviroment }}"!
+        env:
+          STEP_VAR: "This is step variable"
   sec-step:
     runs-on: ubuntu-latest
     steps:    
@@ -33,9 +38,16 @@ jobs:
         run: pwd
   checkout:
     runs-on: ubuntu-latest
+    env:
+        VAR1: ${{ secrets.VAR1 }}
+        VAR2: ${{ vars.VAR2 }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3 
-           
+
       - name: print readme file
         run: cat README.md
+      - name: print env variables
+        run: |
+          echo "VAR1: $VAR1"
+          echo "VAR2: $VAR2"
