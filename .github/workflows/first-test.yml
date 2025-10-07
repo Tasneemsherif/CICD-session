@@ -1,6 +1,8 @@
 name: first test CI
 
 on:
+  push:
+    
   workflow_dispatch:
     inputs:
       enviroment :
