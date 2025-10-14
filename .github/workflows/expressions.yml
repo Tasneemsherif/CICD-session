@@ -8,9 +8,13 @@ jobs:
         runs-on: ubuntu-latest
         outputs:
             BUILD_TIME: ${{ steps.get_time.outputs.BUILD_TIME }}
-            
+
         steps:
             - name: Get build time
               id: get_time
-              run: echo "::set-output name=BUILD_TIME::$(date)"     
-           
+              run: echo "BUILD_TIME=$(date)" >> $GITHUB_OUTPUT
+            - name: Show build time
+              run: echo "Build time is ${{ steps.get_time.outputs.BUILD_TIME }}"
+            - name: deploy on production
+              if: ${{ github.ref == 'refs/heads/main' }}
+              run: echo "Deploying to production server "
