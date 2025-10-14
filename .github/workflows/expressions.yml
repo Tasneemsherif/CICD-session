@@ -18,3 +18,18 @@ jobs:
             - name: deploy on production
               if: ${{ github.ref == 'refs/heads/main' }}
               run: echo "Deploying to production server "
+            - name: deploy on staging
+              if: ${{ github.ref == 'refs/heads/staging' }}
+              run: echo "Deploying to staging server "
+            - name: if event name
+              if : ${{ github.event_name == 'push' }}
+              run: echo "The event is a push event"
+    
+    build-differnet-os:
+        runs-on: ${{ matrix.os }}
+        strategy:
+            matrix:
+                os: [ubuntu-latest, windows-latest, macos-latest]
+        steps:
+            - name: Check OS
+              run: echo "This job is running on ${{ matrix.os }}"
