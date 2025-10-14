@@ -30,6 +30,12 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest, windows-latest, macos-latest]
+                node: [14, 16, 18]
         steps:
             - name: Check OS
               run: echo "This job is running on ${{ matrix.os }}"
+
+            - name: if node version
+              if: ${{ matrix.node == 16 }} &&
+                  ${{ matrix.os == 'ubuntu-latest' }}
+              run: npm install -g npm@latest 
