@@ -1,0 +1,16 @@
+name : outputs-example
+
+on:
+    push:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        outputs:
+            BUILD_TIME: ${{ steps.get_time.outputs.BUILD_TIME }}
+            
+        steps:
+            - name: Get build time
+              id: get_time
+              run: echo "::set-output name=BUILD_TIME::$(date)"     
+           
