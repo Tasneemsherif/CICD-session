@@ -32,3 +32,6 @@ jobs:
 
             - name: List downloaded files
               run: ls -la
+
+            - name: Display artifact content
+              run: cat sample-artifact/artifact.txt

@@ -1,0 +1,52 @@
+name: Package Application
+
+on:
+    push:
+
+jobs:
+    list_files:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3 
+
+            - name: List project files
+              run: ls -la
+
+    build_and_artifact:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+
+            - name : create artifacts
+              run: |
+                mkdir -p build test-reports
+                echo "This is the build artifact." > build/app-package.zip
+                echo "This is the test report." > test-reports/report.txt
+            - name: Upload build and test reports artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: build-and-test-reports
+                path: |
+                  build/app-package.zip
+                  test-reports/report.txt
+                retention-days: 1
+
+    download_artifacts:
+        runs-on: ubuntu-latest
+        needs: [build_and_artifact, list_files]
+
+        steps:
+            - name: Download build and test reports artifact
+              uses: actions/download-artifact@v4
+              with:
+                name: build-and-test-reports
+                path: |
+                  build/app-package.zip
+                  test-reports/report.txt
+
+            - name: List downloaded files
+              run: ls -la
