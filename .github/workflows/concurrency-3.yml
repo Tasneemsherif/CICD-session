@@ -12,7 +12,7 @@ jobs:
       cancel-in-progress: false
 
     steps:
-      - name: Wait for 30 seconds
-        run: sleep 30
+      - name: Wait for 60 seconds
+        run: sleep 60
 
  
