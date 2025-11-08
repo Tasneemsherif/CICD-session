@@ -11,4 +11,7 @@ jobs:
       group: 'concurrency-demo-group'
       cancel-in-progress: false
 
+    steps:
+      - name: Wait for 30 seconds
+        run: sleep 30
  
