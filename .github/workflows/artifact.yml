@@ -19,3 +19,16 @@ jobs:
               with:
                 name: sample-artifact
                 path: artifact.txt
+
+    deploy:
+        runs-on: ubuntu-latest
+        needs: build
+
+        steps:
+            - name: Download artifact
+              uses: actions/download-artifact@v4
+              with:
+                name: sample-artifact
+
+            - name: List downloaded files
+              run: ls -la
