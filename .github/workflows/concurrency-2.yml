@@ -1,0 +1,14 @@
+name: concurrency demo
+
+on:
+  push:
+    
+
+jobs:
+  concurrency-job:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: 'concurrency-demo-group'
+      cancel-in-progress: false
+
+ 
