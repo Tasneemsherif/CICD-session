@@ -1,0 +1,22 @@
+name: timeout demo
+
+on:
+  push:
+
+jobs:
+  timeout-job:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Wait for 90 seconds
+        run: sleep 90
+
+  run-any-way:
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Wait for 90 seconds
+        run: sleep 90
+        timeout-minutes: 1
+
+        
