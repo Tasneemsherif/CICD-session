@@ -1,0 +1,28 @@
+name: Cache Dependencies
+
+on: 
+    push:
+
+jobs:
+    cache-dependencies:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3 
+
+            - name: Cache Node.js modules
+              uses: actions/cache@v3
+              with:
+                path: node_modules
+                key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+                restore-keys: |
+                  ${{ runner.os }}-node-modules-
+
+            - name: Install dependencies
+              run: |
+                echo "Installing dependencies..."
+                mkdir -p node_modules
+                echo "module-a" >> node_modules/module-a.txt
+
+            - name: List cached files
+              run: ls -la node_modules
